@@ -14,4 +14,5 @@ public class Constants {
     static int RIGHT = 1; 
     static boolean visited = true; 
     static boolean notVisited = false; 
+    static int timeLimit = 100; 
 }

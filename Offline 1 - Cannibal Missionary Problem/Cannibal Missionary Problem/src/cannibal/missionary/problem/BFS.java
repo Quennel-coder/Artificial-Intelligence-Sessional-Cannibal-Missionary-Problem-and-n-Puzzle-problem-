@@ -62,8 +62,8 @@ public class BFS {
                 Instant t = Instant.now();
                 Duration dur = Duration.between(start, t);
                 double till = dur.toMillis();
-                if (till >= 10000) {
-                    System.out.println("Time limit 10 s exceeded.");
+                if (till >= Constants.timeLimit * 1000) {
+                    System.out.println("Time limit " + Constants.timeLimit + " s exceeded.");
                     return null;
                 }
 
@@ -96,6 +96,8 @@ public class BFS {
     public void printPath() {
         int t = 0;
         State s = getFinalState();
+        System.out.println("Number of generated nodes: " + nodeNo);
+
         if (s == null) {
             System.out.println("No solution found.");
             return;
