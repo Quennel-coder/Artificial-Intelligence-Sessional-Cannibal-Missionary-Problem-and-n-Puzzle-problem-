@@ -112,7 +112,7 @@ public class DFS {
         }
         str[t] = s.toString();
 
-        System.out.println("BFS takes " + t + " steps.\n");
+        System.out.println("DFS takes " + t + " steps.\n");
 
         for (int i = t; i >= 0; i--) {
             System.out.print(str[i]);
