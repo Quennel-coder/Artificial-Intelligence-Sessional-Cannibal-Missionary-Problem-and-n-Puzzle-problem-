@@ -25,7 +25,7 @@ public class aStarSearch {
         nodeNo = 0;
     }
 
-    public Node execute(Node initialNode) {
+    public Node execute() {
 
         if (initialNode.isThisTheGoalBoard()) {
             return initialNode;
@@ -37,14 +37,18 @@ public class aStarSearch {
         pq.add(initialNode);
 
         while (!pq.isEmpty()) {
+//            System.out.println("hi");
             Node u = pq.poll();
+//            System.out.println(u);
 
             List<Node> successors = u.getSuccessors();
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
+                    System.out.println(v);
                     nodeNo++;
                     if (v.isThisTheGoalBoard()) {
+//                        System.out.println("GOAL!!");
                         return v;
                     }
                 }
@@ -57,7 +61,8 @@ public class aStarSearch {
     }
 
     public void printAllMoves() {
-        Node s = execute(initialNode);
+        Node s = execute();
+        System.out.println(s);
         System.out.println("Nodes generated: " + nodeNo);
         
         if(s == null)
@@ -68,7 +73,7 @@ public class aStarSearch {
         
         Node[] arr = new Node[1000000]; 
         int t = 0 ; 
-        
+//        System.out.println("parent:"+  s.getPreviousNode().getPreviousNode());
         while(!s.equals(null))
         {
             arr[t] = s; 

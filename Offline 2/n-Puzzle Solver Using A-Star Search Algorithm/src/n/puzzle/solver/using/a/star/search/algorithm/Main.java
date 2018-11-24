@@ -7,6 +7,7 @@ package n.puzzle.solver.using.a.star.search.algorithm;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -16,17 +17,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+
         Scanner in = new Scanner(new File("input.txt"));
         int T, t = 0;
         T = in.nextInt();
 
         while (t < T) {
             t++;
-            System.out.println("Input case " + t + ": ");
+            System.out.println("Case No: " + t + "\n");
 
             int N;
             N = in.nextInt();
-            Constants.N = N;
+            Constants.N = N; // numbers in the puzzle
             N++;
             N = (int) Math.sqrt(N);
             Constants.rowNum = Constants.colmNumber = N;
@@ -40,9 +42,52 @@ public class Main {
             }
 
             Node initialNode = new Node(initialBoard, 0, null);
-            System.out.println(initialNode.isThisTheGoalBoard());
-//            aStarSearch search = new aStarSearch(); 
-//            search.execute(initialNode);
+
+            System.out.println("The given board is: ");
+            initialNode.printBoard();
+
+            if (initialNode.isSolvable()) {
+                System.out.println("This board is solvable. ");
+                System.out.println("");
+
+                Node tem ; 
+                
+                System.out.println("Using Hamming Heuristic: ");
+                Constants.HeuristicType = heuristicName.Ham;
+                
+                tem = initialNode ; 
+                
+//                List<Node> tt = tem.getSuccessors(); 
+//                for(Node v: tt)
+//                {
+//                    System.out.println(v);
+//                }
+
+                aStarSearch search = new aStarSearch(tem); 
+                search.printAllMoves();
+                
+                
+//                System.out.println("Using Manhattan Heuristic: ");
+//                Constants.HeuristicType = heuristicName.Man;
+//                
+//                tem = initialNode ;
+//                search = new aStarSearch(tem); 
+//                search.printAllMoves();
+//                
+//                System.out.println("Using Linear Conflict Heuristic: ");
+//                Constants.HeuristicType = heuristicName.Conf; 
+//                
+//                tem = initialNode ;
+//                search = new aStarSearch(tem); 
+//                search.printAllMoves();
+                
+                
+
+
+            } else {
+                System.out.println("This board is unsolvable! Try again. ");
+            }
+
         }
     }
 }

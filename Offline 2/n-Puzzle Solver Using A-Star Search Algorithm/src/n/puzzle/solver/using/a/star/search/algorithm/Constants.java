@@ -10,5 +10,10 @@ package n.puzzle.solver.using.a.star.search.algorithm;
  * @author Heisenberg
  */
 public class Constants {
-    public static int rowNum, colmNumber, N; 
+    public static int rowNum, colmNumber, N;
+    public static heuristicName HeuristicType; 
+}
+
+enum heuristicName{
+     Man, Ham, Conf; 
 }

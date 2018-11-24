@@ -15,9 +15,9 @@ public class NodeComparator implements Comparator<Node> {
 
     @Override
     public int compare(Node node1, Node node2) {
-        if (node1.getF() < node2.getF()) {
+        if (node1.getPriorityFunction() < node2.getPriorityFunction()) {
             return -1;
-        } else if (node1.getF() > node2.getF()) {
+        } else if (node1.getPriorityFunction() > node2.getPriorityFunction()) {
             return 1;
         } else {
             return 0;
