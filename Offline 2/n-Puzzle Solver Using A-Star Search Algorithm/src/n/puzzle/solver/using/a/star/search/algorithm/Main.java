@@ -47,40 +47,40 @@ public class Main {
             initialNode.printBoard();
 
             if (initialNode.isSolvable()) {
-                System.out.println("This board is solvable. ");
+                System.out.println("This board is SOLVABLE. ");
                 System.out.println("");
 
-                Node tem ; 
-                
+                Node tem;
+
+                System.out.println("############################");
                 System.out.println("Using Hamming Heuristic: ");
                 Constants.HeuristicType = heuristicName.Ham;
-                
-                tem = initialNode ; 
- 
 
-                aStarSearch search = new aStarSearch(tem); 
+                tem = initialNode;
+
+                aStarSearch search = new aStarSearch(tem);
                 search.printAllMoves();
-                
-                
+
+                System.out.println("############################");
+
                 System.out.println("Using Manhattan Heuristic: ");
                 Constants.HeuristicType = heuristicName.Man;
-                
-                tem = initialNode ;
-                search = new aStarSearch(tem); 
-                search.printAllMoves();
-                
-                System.out.println("Using Linear Conflict Heuristic: ");
-                Constants.HeuristicType = heuristicName.Conf; 
-                
-                tem = initialNode ;
-                search = new aStarSearch(tem); 
-                search.printAllMoves();
-                
-                
 
+                tem = initialNode;
+                search = new aStarSearch(tem);
+                search.printAllMoves();
+
+                System.out.println("############################");
+
+                System.out.println("Using Linear Conflict Heuristic: ");
+                Constants.HeuristicType = heuristicName.Conf;
+
+                tem = initialNode;
+                search = new aStarSearch(tem);
+                search.printAllMoves();
 
             } else {
-                System.out.println("This board is unsolvable! Try again. ");
+                System.out.println("This board is NOT Solvable! Try again. ");
             }
 
         }

@@ -45,7 +45,7 @@ public class aStarSearch {
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
-                    System.out.println(v);
+//                    System.out.println(v);
                     nodeNo++;
                     if (v.isThisTheGoalBoard()) {
 //                        System.out.println("GOAL!!");
@@ -62,32 +62,34 @@ public class aStarSearch {
 
     public void printAllMoves() {
         Node s = execute();
-        System.out.println(s);
+//        System.out.println(s);
         System.out.println("Nodes generated: " + nodeNo);
-        
-        if(s == null)
-        {
+
+        if (s == null) {
             System.out.println("No solution found!");
-            return; 
+            return;
         }
-        
-        Node[] arr = new Node[1000000]; 
-        int t = 0 ; 
+
+        Node[] arr = new Node[1000000];
+        int t = 0;
 //        System.out.println("parent:"+  s.getPreviousNode().getPreviousNode());
-        while(s != null)
-        {
-            arr[t] = s; 
-            t++; 
-            s = s.getPreviousNode(); 
+        while (s != null) {
+            arr[t] = s;
+            t++;
+            s = s.getPreviousNode();
         }
-        
-        System.out.println("It took " + t + " moves.");
-        
-        t--; 
-        
-        for(int i = t ; i >= 0 ; i--)
-        {
-            arr[i].printBoard();
+
+        t --;
+
+        if (t == 0) {
+            System.out.println("It was itself the GOAL State. 0 moves required.");
+        } else {
+            System.out.println("It took " + t + " moves.");
+
+            System.out.println("The solution moves are: ");
+            for (int i = t; i >= 0; i--) {
+                arr[i].printBoard();
+            }
         }
     }
 }

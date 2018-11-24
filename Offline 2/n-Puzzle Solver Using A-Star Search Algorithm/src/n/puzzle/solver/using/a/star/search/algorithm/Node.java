@@ -63,14 +63,14 @@ public class Node {
             for (int j = 0; j < colmNum; j++) {
 
                 for (int k = j + 1; k < colmNum; k++) {
-                    if (Board[i][k] > Board[i][j]) {
+                    if (Board[i][k] != 0 && Board[i][j] != 0 && Board[i][k] > Board[i][j]) {
                         inversionNo++;
                     }
                 }
 
                 for (int k = i + 1; k < rowNum; k++) {
                     for (int l = 0; l < colmNum; l++) {
-                        if (Board[k][l] > Board[i][j]) {
+                        if (Board[k][l] != 0 && Board[i][j] != 0 && Board[k][l] > Board[i][j]) {
                             inversionNo++;
                         }
                     }
@@ -130,6 +130,17 @@ public class Node {
         return null;
     }
 
+    public int getPriorityFunction() {
+        if (Constants.HeuristicType == heuristicName.Ham) {
+            return movesTillNow + HammingDistance();
+        } else if (Constants.HeuristicType == heuristicName.Man) {
+            return movesTillNow + ManhattanDistance();
+        } else if (Constants.HeuristicType == heuristicName.Conf) {
+            return movesTillNow + linearConflict();
+        }
+        return movesTillNow;
+    }
+
     public int HammingDistance() {
         int wrongPlace = 0;
         for (int i = 0; i < rowNum; i++) {
@@ -140,17 +151,6 @@ public class Node {
             }
         }
         return wrongPlace;
-    }
-
-    public int getPriorityFunction() {
-        if (Constants.HeuristicType == heuristicName.Ham) {
-            return movesTillNow + HammingDistance();
-        } else if (Constants.HeuristicType == heuristicName.Man) {
-            return movesTillNow + ManhattanDistance();
-        } else if (Constants.HeuristicType == heuristicName.Conf) {
-            return movesTillNow + linearConflict();
-        }
-        return movesTillNow;
     }
 
     public int ManhattanDistance() {
@@ -202,7 +202,6 @@ public class Node {
                     // check koro. thakle eta ekta conflict. 
                     // as j > i , so, let's check 
                     if (currentPositionOfEachNumber[i].colm > currentPositionOfEachNumber[j].colm) {
-                        System.out.println("Conflict: " + i + " , " + j);
                         conflictNo++;
                     }
 
@@ -211,15 +210,12 @@ public class Node {
                         && goalPositionOfEachNumber[i].colm == currentPositionOfEachNumber[i].colm) {
 
                     if (currentPositionOfEachNumber[i].row > currentPositionOfEachNumber[j].row) {
-                        System.out.println("Conflict: " + i + " , " + j);
                         conflictNo++;
                     }
                 }
 
             }
         }
-
-        System.out.println("**Conflict No: " + conflictNo);
 
         return (ManhattanDistance() + 2 * conflictNo);
 
@@ -247,7 +243,7 @@ public class Node {
             if (blankRow - 1 >= 0) {
 //                System.out.println("1");
 
-                temBoard = new int[rowNum][colmNum]; 
+                temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
 
                 tem = temBoard[blankRow - 1][blankColm];
@@ -259,7 +255,7 @@ public class Node {
             if (blankRow + 1 < rowNum) {
 //                System.out.println("2");
 
-                temBoard = new int[rowNum][colmNum]; 
+                temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
 
                 tem = temBoard[blankRow + 1][blankColm];
@@ -271,7 +267,7 @@ public class Node {
             if (blankColm - 1 >= 0) {
 //                System.out.println("3");
 
-                temBoard = new int[rowNum][colmNum]; 
+                temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
 
                 tem = temBoard[blankRow][blankColm - 1];
@@ -283,7 +279,7 @@ public class Node {
             if (blankColm + 1 < colmNum) {
 //                System.out.println("4");
 
-                temBoard = new int[rowNum][colmNum]; 
+                temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
 
                 tem = temBoard[blankRow][blankColm + 1];
