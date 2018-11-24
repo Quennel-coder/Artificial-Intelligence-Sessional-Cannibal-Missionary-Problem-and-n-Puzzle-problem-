@@ -326,18 +326,15 @@ public class Node {
 
         Node node = (Node) obj;
 
-        boolean t = true;
-
         for (int i = 0; i < rowNum; i++) {
             for (int j = 0; j < colmNum; j++) {
                 if (node.Board[i][j] != Board[i][j]) {
-                    t = false;
-                    break;
+                    return false; 
                 }
             }
         }
 
-        return t;
+        return true;
     }
 
     @Override

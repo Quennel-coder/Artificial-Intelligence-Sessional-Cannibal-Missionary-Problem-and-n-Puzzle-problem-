@@ -45,15 +45,16 @@ public class aStarSearch {
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
-//                    System.out.println(v);
+                    System.out.println(v);
                     nodeNo++;
                     if (v.isThisTheGoalBoard()) {
 //                        System.out.println("GOAL!!");
                         return v;
                     }
+
+                    map.put(v, nodeNo);
+                    pq.add(v);
                 }
-                map.put(v, nodeNo);
-                pq.add(v);
             }
         }
 
@@ -79,7 +80,7 @@ public class aStarSearch {
             s = s.getPreviousNode();
         }
 
-        t --;
+        t--;
 
         if (t == 0) {
             System.out.println("It was itself the GOAL State. 0 moves required.");
