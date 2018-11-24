@@ -56,30 +56,25 @@ public class Main {
                 Constants.HeuristicType = heuristicName.Ham;
                 
                 tem = initialNode ; 
-                
-//                List<Node> tt = tem.getSuccessors(); 
-//                for(Node v: tt)
-//                {
-//                    System.out.println(v);
-//                }
+ 
 
                 aStarSearch search = new aStarSearch(tem); 
                 search.printAllMoves();
                 
                 
-//                System.out.println("Using Manhattan Heuristic: ");
-//                Constants.HeuristicType = heuristicName.Man;
-//                
-//                tem = initialNode ;
-//                search = new aStarSearch(tem); 
-//                search.printAllMoves();
-//                
-//                System.out.println("Using Linear Conflict Heuristic: ");
-//                Constants.HeuristicType = heuristicName.Conf; 
-//                
-//                tem = initialNode ;
-//                search = new aStarSearch(tem); 
-//                search.printAllMoves();
+                System.out.println("Using Manhattan Heuristic: ");
+                Constants.HeuristicType = heuristicName.Man;
+                
+                tem = initialNode ;
+                search = new aStarSearch(tem); 
+                search.printAllMoves();
+                
+                System.out.println("Using Linear Conflict Heuristic: ");
+                Constants.HeuristicType = heuristicName.Conf; 
+                
+                tem = initialNode ;
+                search = new aStarSearch(tem); 
+                search.printAllMoves();
                 
                 
 

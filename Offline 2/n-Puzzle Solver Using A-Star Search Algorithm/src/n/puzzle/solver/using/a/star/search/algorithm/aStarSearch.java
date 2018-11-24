@@ -74,7 +74,7 @@ public class aStarSearch {
         Node[] arr = new Node[1000000]; 
         int t = 0 ; 
 //        System.out.println("parent:"+  s.getPreviousNode().getPreviousNode());
-        while(!s.equals(null))
+        while(s != null)
         {
             arr[t] = s; 
             t++; 
