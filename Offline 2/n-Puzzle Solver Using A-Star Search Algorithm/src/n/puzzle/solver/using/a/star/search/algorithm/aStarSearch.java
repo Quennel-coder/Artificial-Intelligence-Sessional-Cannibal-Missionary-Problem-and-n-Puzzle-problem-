@@ -45,7 +45,7 @@ public class aStarSearch {
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
-                    System.out.println(v);
+//                    System.out.println(v);
                     nodeNo++;
                     if (v.isThisTheGoalBoard()) {
 //                        System.out.println("GOAL!!");

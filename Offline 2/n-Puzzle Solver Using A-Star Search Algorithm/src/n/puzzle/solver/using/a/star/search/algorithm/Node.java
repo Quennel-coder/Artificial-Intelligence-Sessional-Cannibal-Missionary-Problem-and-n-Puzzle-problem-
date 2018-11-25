@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
  * @author Heisenberg
  */
 public class Node {
@@ -302,40 +301,48 @@ public class Node {
         System.out.println("-------------------");
     }
 
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Arrays.deepHashCode(this.Board);
-        hash = 97 * hash + this.movesTillNow;
-        hash = 97 * hash + this.N;
-        hash = 97 * hash + this.rowNum;
-        hash = 97 * hash + this.colmNum;
-        hash = 97 * hash + Objects.hashCode(this.previousNode);
-        hash = 97 * hash + Arrays.deepHashCode(this.goalBoard);
-        hash = 97 * hash + Arrays.deepHashCode(this.goalPositionOfEachNumber);
-        hash = 97 * hash + Arrays.deepHashCode(this.currentPositionOfEachNumber);
-        return hash;
+        return Arrays.deepHashCode(this.Board);
     }
 
     @Override
     public boolean equals(Object obj) {
-//        System.out.println("boom");
         if (!(obj instanceof Node)) {
             return false;
         }
 
+        boolean t = true;
         Node node = (Node) obj;
+
 
         for (int i = 0; i < rowNum; i++) {
             for (int j = 0; j < colmNum; j++) {
                 if (node.Board[i][j] != Board[i][j]) {
-                    return false; 
+                    t = false ;
+                    break ;
                 }
             }
         }
 
-        return true;
+        return t;
     }
+
+    public void printArr(int[][] arr)
+    {
+        for(int i = 0 ; i < rowNum ; i++)
+        {
+            for(int j = 0 ; j < colmNum ; j++)
+            {
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println("");
+        }
+    }
+
+
+
 
     @Override
     public String toString() {
