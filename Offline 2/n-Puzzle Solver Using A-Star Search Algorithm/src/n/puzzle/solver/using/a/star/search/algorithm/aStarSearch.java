@@ -18,11 +18,13 @@ public class aStarSearch {
     Node[] NodeArray;
     Node initialNode;
     int nodeNo;
+    int expanded; 
 
     public aStarSearch(Node init) {
         initialNode = init;
         NodeArray = new Node[1000000];
         nodeNo = 0;
+        expanded = 0 ; 
     }
 
     public Node execute() {
@@ -40,12 +42,13 @@ public class aStarSearch {
 //            System.out.println("hi");
             Node u = pq.poll();
 //            System.out.println(u);
-
+            expanded++; 
             List<Node> successors = u.getSuccessors();
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
 //                    System.out.println(v);
+//                    System.out.println(pq.size() + " " + map.size());
                     nodeNo++;
                     if (v.isThisTheGoalBoard()) {
 //                        System.out.println("GOAL!!");
@@ -64,6 +67,7 @@ public class aStarSearch {
     public void printAllMoves() {
         Node s = execute();
 //        System.out.println(s);
+        System.out.println("Node expanded: " + expanded);
         System.out.println("Nodes generated: " + nodeNo);
 
         if (s == null) {

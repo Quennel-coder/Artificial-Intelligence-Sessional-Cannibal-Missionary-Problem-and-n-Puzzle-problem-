@@ -32,7 +32,7 @@ public class Node {
         this.previousNode = previousNode;
 
         int t = 1;
-        goalBoard = new int[rowNum + 10][colmNum + 10];
+        goalBoard = new int[rowNum][colmNum];
         goalPositionOfEachNumber = new positionPair[N + 10];
         currentPositionOfEachNumber = new positionPair[N + 10];
 
@@ -40,10 +40,8 @@ public class Node {
             for (int j = 0; j < colmNum; j++) {
                 goalBoard[i][j] = t % (N + 1);
                 goalPositionOfEachNumber[t % (N + 1)] = new positionPair(i, j);
-//                System.out.print(goalBoard[i][j] + " ");
                 t++;
             }
-//            System.out.println("");
         }
 
         for (int i = 0; i < rowNum; i++) {
@@ -51,6 +49,8 @@ public class Node {
                 currentPositionOfEachNumber[Board[i][j]] = new positionPair(i, j);
             }
         }
+
+//        printArr(goalBoard);
 
     }
 
@@ -62,15 +62,16 @@ public class Node {
             for (int j = 0; j < colmNum; j++) {
 
                 for (int k = j + 1; k < colmNum; k++) {
-                    if (Board[i][k] != 0 && Board[i][j] != 0 && Board[i][k] > Board[i][j]) {
+                    if (Board[i][k] != 0 && Board[i][j] != 0 && Board[i][k] < Board[i][j]) {
+
                         inversionNo++;
                     }
                 }
 
                 for (int k = i + 1; k < rowNum; k++) {
                     for (int l = 0; l < colmNum; l++) {
-                        if (Board[k][l] != 0 && Board[i][j] != 0 && Board[k][l] > Board[i][j]) {
-                            inversionNo++;
+                        if (Board[k][l] != 0 && Board[i][j] != 0 && Board[k][l] < Board[i][j]) {
+                             inversionNo++;
                         }
                     }
                 }
@@ -87,7 +88,7 @@ public class Node {
             int tem;
             tem = getInversionNo() + getblankPosition().row;
 
-            if (tem % 2 != 0) // even board has odd getInversionNo() + getblankPosition().row = true 
+            if (tem % 2 != 0) // even board has odd getInversionNo() + getblankPosition().row = true
             {
                 return true;
             } else {
@@ -313,35 +314,28 @@ public class Node {
             return false;
         }
 
-        boolean t = true;
         Node node = (Node) obj;
 
 
         for (int i = 0; i < rowNum; i++) {
             for (int j = 0; j < colmNum; j++) {
                 if (node.Board[i][j] != Board[i][j]) {
-                    t = false ;
-                    break ;
+                    return false;  
                 }
             }
         }
-
-        return t;
+        
+        return true;
     }
 
-    public void printArr(int[][] arr)
-    {
-        for(int i = 0 ; i < rowNum ; i++)
-        {
-            for(int j = 0 ; j < colmNum ; j++)
-            {
+    public void printArr(int[][] arr) {
+        for (int i = 0; i < rowNum; i++) {
+            for (int j = 0; j < colmNum; j++) {
                 System.out.print(arr[i][j] + " ");
             }
             System.out.println("");
         }
     }
-
-
 
 
     @Override

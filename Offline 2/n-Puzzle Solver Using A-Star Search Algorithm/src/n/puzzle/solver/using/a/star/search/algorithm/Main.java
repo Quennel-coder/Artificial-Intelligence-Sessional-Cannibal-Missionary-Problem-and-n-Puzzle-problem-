@@ -51,24 +51,7 @@ public class Main {
                 System.out.println("");
 
                 Node tem;
-
-                System.out.println("############################");
-                System.out.println("Using Hamming Heuristic: ");
-                Constants.HeuristicType = heuristicName.Ham;
-
-                tem = initialNode;
-
-                aStarSearch search = new aStarSearch(tem);
-                search.printAllMoves();
-
-                System.out.println("############################");
-
-                System.out.println("Using Manhattan Heuristic: ");
-                Constants.HeuristicType = heuristicName.Man;
-
-                tem = initialNode;
-                search = new aStarSearch(tem);
-                search.printAllMoves();
+                aStarSearch search;
 
                 System.out.println("############################");
 
@@ -78,6 +61,26 @@ public class Main {
                 tem = initialNode;
                 search = new aStarSearch(tem);
                 search.printAllMoves();
+                
+                System.out.println("############################");
+                
+                System.out.println("Using Manhattan Heuristic: ");
+                Constants.HeuristicType = heuristicName.Man;
+
+                tem = initialNode;
+                search = new aStarSearch(tem);
+                search.printAllMoves();
+                
+                System.out.println("############################");
+
+                System.out.println("Using Hamming Heuristic: ");
+                Constants.HeuristicType = heuristicName.Ham;
+
+                tem = initialNode;
+                search = new aStarSearch(tem);
+                search.printAllMoves();
+                
+                System.out.println("############################");
 
             } else {
                 System.out.println("This board is NOT Solvable! Try again. ");
