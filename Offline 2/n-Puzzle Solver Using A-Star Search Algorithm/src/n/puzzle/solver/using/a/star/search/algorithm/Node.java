@@ -8,7 +8,6 @@ package n.puzzle.solver.using.a.star.search.algorithm;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Heisenberg
@@ -50,7 +49,6 @@ public class Node {
             }
         }
 
-//        printArr(goalBoard);
 
     }
 
@@ -158,8 +156,6 @@ public class Node {
 
         for (int i = 0; i < rowNum; i++) {
             for (int j = 0; j < colmNum; j++) {
-//                System.out.println("goal: " + goalPositionOfEachNumber[0].colm);
-//                System.out.println(goalPositionOfEachNumber[Board[i][j]].row);
                 if (Board[i][j] != 0) {
                     distance += (Math.abs(i - goalPositionOfEachNumber[Board[i][j]].row)
                             + Math.abs(j - goalPositionOfEachNumber[Board[i][j]].colm));
@@ -241,7 +237,6 @@ public class Node {
             blankColm = blankPosition.colm;
 
             if (blankRow - 1 >= 0) {
-//                System.out.println("1");
 
                 temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
@@ -253,7 +248,6 @@ public class Node {
                 successors.add(new Node(temBoard, movesTillNow + 1, this));
             }
             if (blankRow + 1 < rowNum) {
-//                System.out.println("2");
 
                 temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
@@ -265,7 +259,6 @@ public class Node {
                 successors.add(new Node(temBoard, movesTillNow + 1, this));
             }
             if (blankColm - 1 >= 0) {
-//                System.out.println("3");
 
                 temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
@@ -277,7 +270,6 @@ public class Node {
                 successors.add(new Node(temBoard, movesTillNow + 1, this));
             }
             if (blankColm + 1 < colmNum) {
-//                System.out.println("4");
 
                 temBoard = new int[rowNum][colmNum];
                 temBoard = copy2DArray(temBoard);
