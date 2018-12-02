@@ -60,7 +60,7 @@ public class Main {
                 tem = initialNode;
                 search = new aStarSearch(tem);
                 search.printAllMoves();
-                
+//                
                 System.out.println("############################");
                 
                 System.out.println("Using Manhattan Heuristic: ");
@@ -70,16 +70,16 @@ public class Main {
                 search = new aStarSearch(tem);
                 search.printAllMoves();
                 
-//                System.out.println("############################");
-//
-//                System.out.println("Using Hamming Heuristic: ");
-//                Constants.HeuristicType = heuristicName.Ham;
-//
-//                tem = initialNode;
-//                search = new aStarSearch(tem);
-//                search.printAllMoves();
-//                
-//                System.out.println("############################");
+                System.out.println("############################");
+
+                System.out.println("Using Hamming Heuristic: ");
+                Constants.HeuristicType = heuristicName.Ham;
+
+                tem = initialNode;
+                search = new aStarSearch(tem);
+                search.printAllMoves();
+                
+                System.out.println("############################");
 
             } else {
                 System.out.println("This board is NOT Solvable! Try again. ");

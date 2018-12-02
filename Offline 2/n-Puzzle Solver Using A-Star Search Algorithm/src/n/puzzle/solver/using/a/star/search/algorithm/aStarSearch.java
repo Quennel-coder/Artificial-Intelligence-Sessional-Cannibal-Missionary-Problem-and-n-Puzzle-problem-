@@ -5,6 +5,8 @@
  */
 package n.puzzle.solver.using.a.star.search.algorithm;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -40,20 +42,21 @@ public class aStarSearch {
 
         while (!pq.isEmpty()) {
             Node u = pq.poll();
-            
+
             if (u.isThisTheGoalBoard()) {
                 return u;
             }
-            
+
             map.put(u, nodeNo);
-            
+
             expanded++;
+            
             List<Node> successors = u.getSuccessors();
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
                     nodeNo++;
-                    
+
                     pq.add(v);
                 }
             }
@@ -63,17 +66,20 @@ public class aStarSearch {
     }
 
     public void printAllMoves() {
-        
+
+        Instant start = Instant.now();
+
         Node s = execute();
-        System.out.println("Node expanded: " + expanded);
-        System.out.println("Nodes generated: " + nodeNo);
+
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
 
         if (s == null) {
             System.out.println("No solution found!");
             return;
         }
 
-        Node[] arr = new Node[1000000];
+        Node[] arr = new Node[1000];
         int t = 0;
         while (s != null) {
             arr[t] = s;
@@ -86,12 +92,18 @@ public class aStarSearch {
         if (t == 0) {
             System.out.println("It was itself the GOAL State. 0 moves required.");
         } else {
-            System.out.println("It took " + t + " moves.");
-
+            
             System.out.println("The solution moves are: ");
             for (int i = t; i >= 0; i--) {
+                System.out.println("Move #" + (t - i));
                 arr[i].printBoard();
             }
+
+            System.out.println("It took " + t + " moves.");
+            System.out.println("Time taken: " + timeElapsed.toMillis() + " milliseconds");
+
+            System.out.println("Node closed: " + expanded);
+            System.out.println("Nodes opened: " + nodeNo);
         }
     }
 }
