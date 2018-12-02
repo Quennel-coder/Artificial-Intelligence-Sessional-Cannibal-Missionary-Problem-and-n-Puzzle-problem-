@@ -15,16 +15,16 @@ import java.util.PriorityQueue;
  */
 public class aStarSearch {
 
-    //Node[] NodeArray;
+    Node[] NodeArray;
     Node initialNode;
     int nodeNo;
-    int expanded;
+    int expanded; 
 
     public aStarSearch(Node init) {
         initialNode = init;
-        //NodeArray = new Node[1000000];
+        NodeArray = new Node[1000000];
         nodeNo = 0;
-        expanded = 0;
+        expanded = 0 ; 
     }
 
     public Node execute() {
@@ -40,20 +40,17 @@ public class aStarSearch {
 
         while (!pq.isEmpty()) {
             Node u = pq.poll();
-            
-            if (u.isThisTheGoalBoard()) {
-                return u;
-            }
-            
-            map.put(u, nodeNo);
-            
-            expanded++;
+            expanded++; 
             List<Node> successors = u.getSuccessors();
 
             for (Node v : successors) {
                 if (!map.containsKey(v)) {
                     nodeNo++;
-                    
+                    if (v.isThisTheGoalBoard()) {
+                        return v;
+                    }
+
+                    map.put(v, nodeNo);
                     pq.add(v);
                 }
             }
@@ -63,7 +60,6 @@ public class aStarSearch {
     }
 
     public void printAllMoves() {
-        
         Node s = execute();
         System.out.println("Node expanded: " + expanded);
         System.out.println("Nodes generated: " + nodeNo);
